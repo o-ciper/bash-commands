@@ -97,13 +97,13 @@ if you installed it with the `apt` package manager then use
 youtube-dl -U
 ```
 
-if you installed it with `curl` to `/usr/local/bin/` then you have created a symlink because youtube-dl produced the error:
+if you installed it with `curl` to `/usr/local/bin/` then you have to create a symlink because youtube-dl produced the error:
 
 ```bash
 /usr/bin/env: ‘python’: No such file or directory
 ```
 
-so created a symlink
+so create a symlink with
 
 ```bash
 sudo ln -s /usr/bin/python3 /usr/local/bin/python
@@ -368,7 +368,7 @@ rm -r Junk3
 
 ### Removing directories that are only empty
 
-You can't remove directories that are not empty with "rmdir" command
+You can't remove directories that are not empty with `rmdir` command
 
 If you run it with global "*" character it will only remove the empty directories and leave the others
 

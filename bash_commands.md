@@ -1,4 +1,4 @@
-# Bash Commands
+# Bash Commands in Ubuntu
 
 ## Restart Network Manager
 
@@ -79,25 +79,27 @@ systemd-analyze
 sudo nethogs -a
 ```
 
-## Update youtube-dl which is installed with `pip3`
+## Update youtube-dl
+
+If you installed it with `pip3` then use
 
 ```bash
 pip3 install --upgrade youtube_dl
 ```
 
-if you installed it with `sudo` then use
+If you installed it with `sudo` then use
 
 ```bash
 sudo pip3 install --upgrade youtube_dl
 ```
 
-if you installed it with the `apt` package manager then use
+If you installed it with the `apt` package manager then use
 
 ```bash
 youtube-dl -U
 ```
 
-if you installed it with `curl` to `/usr/local/bin/` then you have to create a symlink because youtube-dl produced the error:
+If you installed it with `curl` to `/usr/local/bin/` then you have to create a symlink because youtube-dl will probably produce the following error:
 
 ```bash
 /usr/bin/env: ‘python’: No such file or directory

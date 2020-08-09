@@ -24,6 +24,12 @@ You can add an alias for the `df` command to your .bashrc or .bash_aliases file 
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'
 ```
 
+## Find who is logged in to the system
+
+```bash
+users
+```
+
 ## Find where a program is installed
 
 It works regardless of whether the program is in your path (/sbin, /usr/sbin, and /usr/local/sbin are often omitted for normal users; and third party products can be installed all over the place with /opt a common location)   or not.  It works with programs installed via package managers and added via other means.  It's completely independent of distribution package managers.

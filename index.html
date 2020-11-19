@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>bash_commands.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="bash-commands-in-ubuntu">Bash Commands in Ubuntu</h1>
+<h2 id="restart-network-manager">Restart Network Manager</h2>
+<pre class="hljs"><code><div>sudo systemctl restart NetworkManager.service
+</div></code></pre>
+<h2 id="list-disk-partitions-excluding-snaps">List disk partitions excluding snaps</h2>
+<pre class="hljs"><code><div>lsblk -e7
+</div></code></pre>
+<h2 id="list-free-disk-spaces-also-clean-up-snap-and-loop-devices-from-df-output-in-ubuntu-1804-and-2004">List free disk spaces. Also clean up snap and loop devices from df output in Ubuntu 18.04 and 20.04</h2>
+<pre class="hljs"><code><div>df -h -x squashfs -x tmpfs -x devtmpfs --total
+</div></code></pre>
+<p>You can add an alias for the <code>df</code> command to your .bashrc or .bash_aliases file if you wish</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">alias</span> df=<span class="hljs-string">'df -h -x squashfs -x tmpfs -x devtmpfs'</span>
+</div></code></pre>
+<h2 id="find-who-is-logged-in-to-the-system">Find who is logged in to the system</h2>
+<pre class="hljs"><code><div>users
+</div></code></pre>
+<h2 id="find-where-a-program-is-installed">Find where a program is installed</h2>
+<p>It works regardless of whether the program is in your path (/sbin, /usr/sbin, and /usr/local/sbin are often omitted for normal users; and third party products can be installed all over the place with /opt a common location)   or not.  It works with programs installed via package managers and added via other means.  It's completely independent of distribution package managers.</p>
+<pre class="hljs"><code><div>locate -r bin/&lt;program_name&gt;\$
+</div></code></pre>
+<p>for example:</p>
+<pre class="hljs"><code><div>locate -r bin/synaptic\$
+</div></code></pre>
+<p>or, <code>which</code>, if the the executable is in the $PATH.
+<code>which</code> searches for executables in the directories specified by the environment variable PATH. And if found out, the full pathname of this executable will be printed. i.e. <code>which</code> searches only for binaries in $PATH.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">which</span> &lt;executable_name&gt;
+</div></code></pre>
+<p>or, <code>whereis</code> searches for executables, source files, and manual pages using a database built by system automatically.</p>
+<pre class="hljs"><code><div>whereis &lt;executable_name&gt;
+</div></code></pre>
+<p>or</p>
+<pre class="hljs"><code><div>apt-cache policy &lt;program_name&gt;
+</div></code></pre>
+<h2 id="execute-trim-manually">Execute TRIM manually</h2>
+<pre class="hljs"><code><div>sudo fstrim -av
+</div></code></pre>
+<p>This operation may last for minutes; it then looks as if the terminal has frozen. That's not true, however; simply wait patiently....</p>
+<p><em>Note: on a few SSD models (specifically two models from Crucial), executing this command when there's high disk activity (I/O activity), might cause problems. So only apply it when there's not much activity going on. Preferably with all other applications closed.</em></p>
+<h2 id="bootup-time">Bootup time</h2>
+<pre class="hljs"><code><div>systemd-analyze
+</div></code></pre>
+<h2 id="watch-network-traffic">Watch network traffic</h2>
+<pre class="hljs"><code><div>sudo nethogs -a
+</div></code></pre>
+<h2 id="update-youtube-dl">Update youtube-dl</h2>
+<p>If you installed it with <code>pip3</code> then use</p>
+<pre class="hljs"><code><div>pip3 install --upgrade youtube_dl
+</div></code></pre>
+<p>If you installed it with <code>sudo</code> then use</p>
+<pre class="hljs"><code><div>sudo pip3 install --upgrade youtube_dl
+</div></code></pre>
+<p>If you installed it with the <code>apt</code> package manager then use</p>
+<pre class="hljs"><code><div>youtube-dl -U
+</div></code></pre>
+<p>If you installed it with <code>curl</code> to <code>/usr/local/bin/</code> then you have to create a symlink because youtube-dl will probably produce the following error:</p>
+<pre class="hljs"><code><div>/usr/bin/env: ‘python’: No such file or directory
+</div></code></pre>
+<p>so create a symlink with</p>
+<pre class="hljs"><code><div>sudo ln -s /usr/bin/python3 /usr/<span class="hljs-built_in">local</span>/bin/python
+</div></code></pre>
+<h2 id="generate-12-character-long-password">Generate 12 character long password</h2>
+<pre class="hljs"><code><div>pwgen -s 12 -1 -y
+gen_pass 12 <span class="hljs-comment">#Look at .bashrc for this. It's an alias.</span>
+</div></code></pre>
+<h2 id="my-local-network-ip-address">My local network ip address</h2>
+<pre class="hljs"><code><div>hostname -I
+</div></code></pre>
+<h2 id="search-for-a-text-with-a-pattern-in-a-directory-or-file">Search for a text with a pattern in a directory or file</h2>
+<pre class="hljs"><code><div>grep -rnw <span class="hljs-string">'/path/to/somewhere/'</span> -e <span class="hljs-string">'pattern'</span>
+</div></code></pre>
+<h2 id="list-files-and-directories-we-have-in-the-current-directory-but-not-hidden-files">List files and directories we have in the current directory but not hidden files</h2>
+<pre class="hljs"><code><div>ls
+</div></code></pre>
+<h2 id="list-every-file-and-directory-we-have-in-the-current-directory-including-hidden-files">List every file and directory we have in the current directory including hidden files</h2>
+<pre class="hljs"><code><div>ls -a
+</div></code></pre>
+<h2 id="get-the-last-command-you-ran-that-starts-with-for-example-whereis">Get the last command you ran that starts with for example <code>whereis</code></h2>
+<pre class="hljs"><code><div>!whereis
+</div></code></pre>
+<h2 id="prepend-to-the-last-command-you-ran-with">Prepend to the last command you ran with <code>!!</code></h2>
+<pre class="hljs"><code><div>&lt;prepended_command&gt; !!
+</div></code></pre>
+<p>for example</p>
+<pre class="hljs"><code><div>sudo !!
+</div></code></pre>
+<h2 id="use-space-bar-to-expand-the-last-command-you-ran-when-using--or-commmand-but-first-you-need-to-add-bind-spacemagic-space-to-the-bashrc">use space bar to expand the last command you ran when using <code>!!</code> or <code>!&lt;commmand&gt;</code>. But first you need to add <code>bind Space:magic-space</code> to the .bashrc</h2>
+<pre class="hljs"><code><div>sudo !! <span class="hljs-comment"># Hit space and the code will expand</span>
+</div></code></pre>
+<h2 id="use-ctrl-p-to-expand-the-last-command-you-ran-when-using--or-commmand-you-dont-need-to-modify-bashrc">use ctrl-p to expand the last command you ran when using <code>!!</code> or <code>!&lt;commmand&gt;</code>. You don't need to modify .bashrc</h2>
+<pre class="hljs"><code><div>!<span class="hljs-built_in">which</span> <span class="hljs-comment"># Hit space and the code will expand</span>
+</div></code></pre>
+<h2 id="gives-a-long-list-of-files-and-directories-we-have-in-the-current-directory-with-more-information-about-them-but-not-hidden-files">Gives a long list of files and directories we have in the current directory with more information about them but not hidden files</h2>
+<pre class="hljs"><code><div>ls -l
+</div></code></pre>
+<h2 id="gives-a-long-list-every-file-and-directory-we-have-in-the-current-directory-with-more-information-about-them-including-hidden-files">Gives a long list every file and directory we have in the current directory with more information about them including hidden files</h2>
+<pre class="hljs"><code><div>ls -la
+</div></code></pre>
+<h2 id="print-current-working-directory-with-the-absolute-path">Print current working directory with the absolute path</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">pwd</span>
+</div></code></pre>
+<h2 id="cd-target-with-target-argument-will-change-the-directory-to-the-target"><code>cd &lt;target&gt;</code> with target argument will change the directory to the target</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> /home/Desktop
+</div></code></pre>
+<h2 id="to-go-one-level-up-to-the-root-use">To go one level up to the root use</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ..
+</div></code></pre>
+<h2 id="go-to-home-directory-from-where-ever-you-are">Go to home directory from where ever you are</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span>
+</div></code></pre>
+<p>or</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> ~
+</div></code></pre>
+<h2 id="if-you-want-to-change-directory-and-get-back-to-the-directory-you-were-before-use-for-example">If you want to change directory and get back to the directory you were before, use for example</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">pushd</span> /usr/var/wwww
+</div></code></pre>
+<p>Now to get back to where you were before</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">popd</span>
+</div></code></pre>
+<h2 id="if-you-listed-files-and-dont-know-what-type-those-files-are-a-file-might-be-a-text-file-or-it-could-be-a-folder">If you listed files and don't know what type those files are. A file might be a text file or it could be a folder</h2>
+<p>Because Linux doesn't necessarily need a file extension. In that case you can use</p>
+<pre class="hljs"><code><div>file &lt;file_or_folder_name&gt;
+</div></code></pre>
+<h2 id="finding-files">Finding files</h2>
+<p>The <code>locate</code> command. It takes the filename of part of a filename as argument. It will give the absolute path of a file that contains the file name or part of it</p>
+<pre class="hljs"><code><div>locate &lt;filename&gt;
+</div></code></pre>
+<p><code>locate</code> looks at a database for the locate command. If you issue the locate command on a fresh linux install it probably won't work, because a database is not created yet. Linux possibly updates this database once a day</p>
+<p>If you want to manually update this database, you can do it as follows</p>
+<pre class="hljs"><code><div>sudo updatedb
+</div></code></pre>
+<h2 id="if-you-want-to-find-out-if-a-command-is-installed-or-where-it-is-installed-for-example-the-%22cal%22-command-that-displays-a-simple-calender-run-the-following-command">If you want to find out if a command is installed or where it is installed, for example the &quot;cal&quot; command that displays a simple calender, run the following command</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">which</span> &lt;<span class="hljs-built_in">command</span>&gt;
+</div></code></pre>
+<h2 id="you-can-use-the-%22history%22-command-to-print-all-the-commands-that-you-ran">You can use the &quot;history&quot; command to print all the commands that you ran</h2>
+<pre class="hljs"><code><div><span class="hljs-built_in">history</span>
+</div></code></pre>
+<h2 id="help-commands">Help commands</h2>
+<p>The most simple command is <code>whatis</code>. e.g</p>
+<p>For some commands like <code>cd</code>, it will not work</p>
+<pre class="hljs"><code><div>whatis cal
+</div></code></pre>
+<h2 id="i-want-to-do-something-that-involves-time-but-i-dont-know-exactly-which-command-to-use-in-that-case">I want to do something that involves time; but I don't know exactly which command to use. In that case</h2>
+<pre class="hljs"><code><div>apropos time
+</div></code></pre>
+<h2 id="you-can-look-at-he-reference-manuels-eg">You can look at he reference manuels. e.g</h2>
+<pre class="hljs"><code><div>man ls
+</div></code></pre>
+<h2 id="for-some-commands-like-%22cd%22-which-is-a-basic-shell-command-there-wont-be-a-man-page">For some commands like &quot;cd&quot;, which is a basic shell command, there won't be a man page</h2>
+<h2 id="make-a-directory">Make a directory</h2>
+<pre class="hljs"><code><div>mkdir Junk
+</div></code></pre>
+<h2 id="if-you-run-%22touch%22-for-an-existing-file-it-will-only-update-the-date-it-is-accessed-it-wont-affect-the-content">If you run &quot;touch&quot; for an existing file, it will only update the date it is accessed. It wont affect the content</h2>
+<pre class="hljs"><code><div>touch &lt;filename&gt;
+</div></code></pre>
+<h2 id="if-you-want-to-create-a-file-run-the-%22touch%22-command-with-a-file-name-that-doesnt-exist">If you want to create a file, run the &quot;touch&quot; command with a file name that doesn't exist</h2>
+<pre class="hljs"><code><div>touch file2
+</div></code></pre>
+<h2 id="create-multiple-files">Create multiple files</h2>
+<pre class="hljs"><code><div>touch file3 file4.txt file5
+</div></code></pre>
+<h2 id="if-i-want-to-make-a-copy-of-a-file-from-another-directory-to-my-current-working-directory-eg">If I want to make a copy of a file from another directory to my current working directory, e.g</h2>
+<p><code>cp &lt;path_of_original_file&gt; &lt;new_file_name&gt;</code></p>
+<pre class="hljs"><code><div>cp ~/.bashrc bashrc
+</div></code></pre>
+<h2 id="if-i-want-to-make-a-copy-of-a-file-in-the-same-directory-say-for-a-back-up-of-the-original-file">If I want to make a copy of a file in the same directory (say, for a back up of the original file)</h2>
+<pre class="hljs"><code><div>cp bashrc bashrc.bak
+</div></code></pre>
+<h2 id="renama-or-move-a-file">Renama or Move a file</h2>
+<h3 id="rename-a-file">Rename a file</h3>
+<pre class="hljs"><code><div>mv bashrc.bak bashrc
+</div></code></pre>
+<p>if there is already an existing file named bashrc, it will overwrite it</p>
+<h2 id="removing-files">Removing files</h2>
+<h3 id="rm-command"><code>rm</code> command</h3>
+<pre class="hljs"><code><div>rm &lt;filename1&gt; &lt;filename2&gt; ....
+</div></code></pre>
+<p>Remove all files in a directory</p>
+<pre class="hljs"><code><div>rm *
+</div></code></pre>
+<p>Remove all the files that start with &quot;file&quot;</p>
+<pre class="hljs"><code><div>rm file*
+</div></code></pre>
+<p>Removing directories whether it is empty or not</p>
+<pre class="hljs"><code><div>rm -r &lt;directory1&gt; &lt;directory2&gt; ....
+</div></code></pre>
+<p>Remove a directory named Junk3</p>
+<pre class="hljs"><code><div>rm -r Junk3
+</div></code></pre>
+<p><code>-r</code> means execute the command recursively, causing to remove the folders, subfolders and files in it</p>
+<h3 id="removing-directories-that-are-only-empty">Removing directories that are only empty</h3>
+<p>You can't remove directories that are not empty with <code>rmdir</code> command</p>
+<p>If you run it with global &quot;*&quot; character it will only remove the empty directories and leave the others</p>
+<pre class="hljs"><code><div>rmdir &lt;directory1&gt; &lt;directory2&gt; ....
+</div></code></pre>
+
+</body>
+</html>

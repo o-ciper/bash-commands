@@ -383,3 +383,9 @@ If you run it with global "*" character it will only remove the empty directorie
 ```bash
 rmdir <directory1> <directory2> ....
 ```
+
+### Get RAM info
+
+```
+sudo dmidecode -t memory
+```
